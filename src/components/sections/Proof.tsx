@@ -115,7 +115,7 @@ export default function Proof() {
           ))}
         </div>
 
-        {/* Promise band — dark, with a slow bronze shine travelling the stroke */}
+        {/* Promise band — dark, with a slow violet shine travelling the stroke */}
         <ScrollReveal className="card-lift relative mt-6 overflow-hidden p-7 text-left sm:p-9">
           <ShineBorder duration={18} />
           <span

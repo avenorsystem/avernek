@@ -123,7 +123,7 @@ const paths = tools.map((tool) => {
 export default function IntegrationNetwork() {
   return (
     <div
-      className="relative mx-auto h-[22.5rem] w-full max-w-5xl overflow-hidden rounded-[2rem] border border-line bg-[radial-gradient(circle_at_center,rgba(203,170,107,0.12),transparent_38%),linear-gradient(180deg,#1c1d22,#15161a)] shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_24px_70px_-42px_rgba(0,0,0,0.9)]"
+      className="relative mx-auto h-[22.5rem] w-full max-w-5xl overflow-hidden rounded-[2rem] border border-line bg-[radial-gradient(circle_at_center,rgba(139,65,251,0.14),transparent_38%),linear-gradient(180deg,#1c1d22,#15161a)] shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_24px_70px_-42px_rgba(0,0,0,0.9)]"
       aria-label="Avernek integration network: Meta, OpenAI, Anthropic, n8n, Make, Google Sheets, Notion, and Python"
     >
       <div
@@ -144,9 +144,9 @@ export default function IntegrationNetwork() {
       >
         <defs>
           <linearGradient id="integration-beam" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0" stopColor="#8a6a3b" />
-            <stop offset="0.5" stopColor="#e7cf99" />
-            <stop offset="1" stopColor="#cbaa6b" />
+            <stop offset="0" stopColor="#6d28d9" />
+            <stop offset="0.5" stopColor="#c4a1ff" />
+            <stop offset="1" stopColor="#8b41fb" />
           </linearGradient>
           <filter id="integration-glow" x="-20%" y="-20%" width="140%" height="140%">
             <feGaussianBlur stdDeviation="3" result="blur" />
@@ -194,7 +194,7 @@ export default function IntegrationNetwork() {
         </div>
       ))}
 
-      <div className="absolute left-1/2 top-1/2 z-20 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-brass/40 bg-[#17181d] text-brass shadow-[0_0_0_10px_rgba(203,170,107,0.04),0_0_55px_rgba(203,170,107,0.18)] sm:h-24 sm:w-24">
+      <div className="absolute left-1/2 top-1/2 z-20 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-brass/40 bg-[#17181d] text-brass shadow-[0_0_0_10px_rgba(139,65,251,0.05),0_0_55px_rgba(139,65,251,0.22)] sm:h-24 sm:w-24">
         <Mark className="h-9 w-9 sm:h-11 sm:w-11" />
       </div>
     </div>

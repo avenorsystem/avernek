@@ -186,7 +186,7 @@ export default function HeroConsole() {
           <motion.div
             animate={{ opacity: at(3) ? 1 : 0, y: at(3) ? 0 : 8 }}
             transition={{ duration: 0.4, ease }}
-            className="max-w-[85%] self-end rounded-2xl rounded-tr-md bg-[linear-gradient(180deg,#e7cf99,#cbaa6b)] px-4 py-2.5 text-sm leading-relaxed text-[#1c1509] shadow-[inset_0_1px_0_rgba(255,255,255,0.35)]"
+            className="max-w-[85%] self-end rounded-2xl rounded-tr-md bg-[linear-gradient(180deg,#a66cff,#8b41fb)] px-4 py-2.5 text-sm leading-relaxed text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.3)]"
           >
             Namaste! Weekend batch runs Sat–Sun. Want me to share the fee and hold a seat?
           </motion.div>

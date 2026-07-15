@@ -9,13 +9,13 @@
     /* ------------------------------------------------------------------
        Avernek — "Matte Signal" system.
        Dark charcoal base (shiny-matte, gradient-lit), platinum text, one
-       champagne-bronze accent. Premium / futuristic / AI, never a café.
+       vivid violet accent. Premium / futuristic / AI, never monochromatic.
        Most sections are dark; a few porcelain-light sections + light
        emphasis cards keep it from ever reading dead.
        NOTE: legacy token names are kept for stability —
          paper, paper-deep, card, ink, graphite, muted, line = the DARK theme
          char, surface-dark, card-dark = the LIGHT (porcelain) surfaces
-         sky = bronze accent (also aliased as brass)
+         sky = violet accent (also aliased as brass for compatibility)
        ------------------------------------------------------------------ */
     --paper: #0e0e11; /* page background — near-black charcoal */
     --paper-deep: #131317; /* alternating dark section */
@@ -25,9 +25,9 @@
     --muted: #8b8b91; /* secondary text — cool grey */
     --line: rgba(243, 242, 238, 0.1); /* hairline borders on dark */
 
-    --sky: #cbaa6b; /* accent — champagne bronze (reads on dark) */
-    --sky-bright: #e7cf99; /* brighter champagne highlight */
-    --sky-wash: #241e12; /* dark bronze fill for chips on dark */
+    --sky: #8b41fb; /* primary brand violet */
+    --sky-bright: #c4a1ff; /* brighter lilac highlight */
+    --sky-wash: #211436; /* dark violet fill for chips on dark */
 
     /* Light porcelain surfaces (a few sections + emphasis cards) */
     --char: #edece6; /* light section background */
@@ -39,8 +39,8 @@
     /* RGB triplets so Tailwind opacity modifiers work. */
     --paper-rgb: 14 14 17;
     --ink-rgb: 243 242 238;
-    --sky-rgb: 203 170 107;
-    --sky-bright-rgb: 231 207 153;
+    --sky-rgb: 139 65 251;
+    --sky-bright-rgb: 196 161 255;
     --char-rgb: 237 236 230;
   }
 
@@ -61,7 +61,7 @@
   }
 
   ::selection {
-    background: rgba(203, 170, 107, 0.26);
+    background: rgba(139, 65, 251, 0.3);
     color: var(--ink);
   }
 
@@ -136,10 +136,10 @@
       0 26px 60px -34px rgba(0, 0, 0, 0.85);
   }
 
-  /* Porcelain-light section surface (demo, contact) with a faint bronze glow. */
+  /* Porcelain-light section surface (demo, contact) with a faint violet glow. */
   .surface-dark {
     background:
-      radial-gradient(120% 75% at 50% -8%, rgba(203, 170, 107, 0.12), transparent 56%),
+      radial-gradient(120% 75% at 50% -8%, rgba(139, 65, 251, 0.12), transparent 56%),
       linear-gradient(180deg, #f1f0ec 0%, #e8e7e0 100%);
   }
 
@@ -151,19 +151,19 @@
     box-shadow: 0 1px 2px rgba(20, 20, 26, 0.05), 0 22px 48px -26px rgba(20, 20, 26, 0.28);
   }
 
-  /* Primary CTA on dark — platinum pill with a soft sheen (dark text). */
+  /* Primary CTA — branded violet with a soft dimensional sheen. */
   .btn-sheen {
-    background: linear-gradient(180deg, #ffffff 0%, #e7e5dd 100%);
+    background: linear-gradient(135deg, #9f5ffe 0%, #8f46fc 48%, #5d25a3 100%);
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.9),
-      0 12px 28px -14px rgba(0, 0, 0, 0.7);
+      inset 0 1px 0 rgba(255, 255, 255, 0.35),
+      0 12px 30px -12px rgba(139, 65, 251, 0.46);
   }
-  /* CTA on the porcelain-light sections — dark ink pill (light text). */
+  /* The same primary identity carries onto porcelain-light sections. */
   .btn-sheen-paper {
-    background: linear-gradient(180deg, #26262d 0%, #141418 100%);
+    background: linear-gradient(135deg, #9f5ffe 0%, #8f46fc 48%, #5d25a3 100%);
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.09),
-      0 12px 28px -14px rgba(0, 0, 0, 0.45);
+      inset 0 1px 0 rgba(255, 255, 255, 0.3),
+      0 12px 28px -12px rgba(117, 48, 223, 0.38);
   }
 
   /* Starfield — deliberately placed points that breathe slowly. Sizes and
@@ -176,10 +176,10 @@
     will-change: opacity, transform;
   }
   .star-glow {
-    box-shadow: 0 0 6px rgba(243, 242, 238, 0.9), 0 0 14px rgba(203, 170, 107, 0.5);
+    box-shadow: 0 0 6px rgba(243, 242, 238, 0.9), 0 0 14px rgba(139, 65, 251, 0.55);
   }
 
-  /* Slow champagne aurora that drifts behind the hero headline. */
+  /* Slow violet aurora that drifts behind the hero headline. */
   .aurora {
     position: absolute;
     border-radius: 9999px;

@@ -24,8 +24,8 @@ const data: Point[] = [
   { t: "1 day", v: 17 },
 ];
 
-// Bronze ramp — richest at the fast end, fading as the lead goes cold.
-const colors = ["#b9873c", "#8a6a3b", "#9c7b46", "#ad9160", "#c3ad84", "#d3c3a4", "#dccdb4"];
+// Violet ramp — richest at the fast end, fading as the lead goes cold.
+const colors = ["#8b41fb", "#7530df", "#9252f4", "#a66cff", "#b98cff", "#cbb0f5", "#d9c9f2"];
 
 // --- chart geometry (viewBox 1000 × 460) ---
 const W = 1000;
@@ -73,7 +73,7 @@ export default function SpeedToLead() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.1}>
-            <figure className="card-lift p-5 sm:p-7">
+            <figure className="card-lift p-3 sm:p-7">
               <figcaption className="mb-4 flex items-center justify-between gap-4">
                 <span className="text-sm font-semibold text-ink">
                   Likelihood a lead converts, by reply time
@@ -83,12 +83,12 @@ export default function SpeedToLead() {
                 </span>
               </figcaption>
 
-              <div className="overflow-x-auto">
-                <svg viewBox={`0 0 ${W} 460`} className="h-auto w-full min-w-[560px]" role="img" aria-label="Conversion likelihood falls sharply as reply time increases: 391% at one minute down to 17% after a day.">
+              <div className="w-full overflow-hidden">
+                <svg viewBox={`0 0 ${W} 460`} className="block h-auto w-full max-w-full" role="img" aria-label="Conversion likelihood falls sharply as reply time increases: 391% at one minute down to 17% after a day.">
                   <defs>
                     <linearGradient id="stlArea" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#b9873c" stopOpacity="0.16" />
-                      <stop offset="100%" stopColor="#b9873c" stopOpacity="0" />
+                      <stop offset="0%" stopColor="#8b41fb" stopOpacity="0.18" />
+                      <stop offset="100%" stopColor="#8b41fb" stopOpacity="0" />
                     </linearGradient>
                   </defs>
 
@@ -104,7 +104,7 @@ export default function SpeedToLead() {
 
                   {/* area + curve */}
                   <path d={areaPath} fill="url(#stlArea)" />
-                  <path d={linePath} fill="none" stroke="#b9873c" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d={linePath} fill="none" stroke="#8b41fb" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
 
                   {/* points */}
                   {pts.map((p, i) => {

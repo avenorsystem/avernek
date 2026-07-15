@@ -21,10 +21,10 @@ export default function Logo({ tone = "ink", className = "", href = "/" }: LogoP
       className={`group inline-flex items-center gap-2.5 ${className}`}
     >
       <span
-        className={`relative flex h-9 w-9 items-center justify-center rounded-xl transition-colors duration-300 ${
+        className={`relative flex h-9 w-9 items-center justify-center rounded-xl transition-all duration-300 ${
           onDark
-            ? "bg-char-text text-ink group-hover:bg-white"
-            : "bg-ink text-paper group-hover:bg-black"
+            ? "bg-char-text text-ink group-hover:bg-[linear-gradient(135deg,#9f5ffe,#8f46fc_48%,#5d25a3)] group-hover:text-white"
+            : "bg-ink text-paper group-hover:bg-[linear-gradient(135deg,#9f5ffe,#8f46fc_48%,#5d25a3)] group-hover:text-white"
         }`}
       >
         <Mark className="relative h-5 w-5" />

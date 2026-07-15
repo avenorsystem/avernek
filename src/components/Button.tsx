@@ -7,14 +7,14 @@ const base =
   "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold tracking-wide transition-all duration-200 ease-out active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky focus-visible:ring-offset-2 focus-visible:ring-offset-paper disabled:cursor-not-allowed disabled:opacity-60 disabled:active:scale-100";
 
 const variants: Record<Variant, string> = {
-  // Platinum pill with a matte sheen — the one strong CTA on the dark base.
+  // Brand-violet pill — the strongest CTA on the page.
   primary:
-    "btn-sheen border border-black/10 text-paper hover:-translate-y-0.5 hover:shadow-card-hover",
-  // Hairline outline on dark — warms to bronze on hover.
+    "btn-sheen border border-white/15 text-white hover:-translate-y-0.5 hover:brightness-110",
+  // Hairline outline on dark — shifts to violet on hover.
   secondary:
     "border border-ink/25 bg-transparent text-ink hover:border-brass/70 hover:bg-ink/[0.05] hover:text-brass",
   ghost: "text-ink hover:text-brass",
-  // Dark ink pill for the porcelain-light sections (light text).
+  // Brand-violet pill for the porcelain-light sections.
   onDark:
     "btn-sheen-paper border border-white/10 text-ink hover:-translate-y-0.5",
   onDarkSecondary:

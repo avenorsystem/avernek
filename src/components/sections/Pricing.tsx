@@ -29,7 +29,7 @@ export default function Pricing() {
                     featured ? "lg:z-10 lg:scale-[1.04]" : ""
                   }`}
                 >
-                  {/* The recommended tier earns the travelling bronze stroke. */}
+                  {/* The recommended tier earns the travelling violet stroke. */}
                   {featured && <ShineBorder borderWidth={1.5} duration={12} />}
 
                   {featured && (

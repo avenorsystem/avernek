@@ -5,7 +5,7 @@ type ShineBorderProps = {
   borderWidth?: number;
   /** Seconds for one full travel of the gradient. */
   duration?: number;
-  /** One colour, or a ramp. Defaults to the Avernek bronze ramp. */
+  /** One colour, or a ramp. Defaults to the Avernek violet ramp. */
   shineColor?: string | string[];
   className?: string;
 };
@@ -15,15 +15,14 @@ type ShineBorderProps = {
  *
  * Drop inside any `position: relative` + `overflow-hidden` card; it inherits the
  * card's radius and paints only the border (the two masks cancel out the
- * middle). Tuned to the Avernek palette — deep bronze → champagne → highlight —
- * so it reads as brushed metal catching the light, not a neon gradient.
+ * middle). Tuned to the Avernek palette — deep violet → primary → lilac.
  *
  * `motion-safe:` means it holds still for prefers-reduced-motion users.
  */
 export default function ShineBorder({
   borderWidth = 1,
   duration = 14,
-  shineColor = ["#8A6A3B", "#CBAA6B", "#E7CF99"],
+  shineColor = ["#6D28D9", "#8B41FB", "#C4A1FF"],
   className = "",
 }: ShineBorderProps) {
   return (

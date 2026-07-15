@@ -49,12 +49,12 @@ export default function StarField({ className = "" }: { className?: string }) {
       aria-hidden
       className={`pointer-events-none absolute inset-0 overflow-hidden [mask-image:radial-gradient(ellipse_92%_86%_at_50%_40%,#000_35%,transparent_92%)] [-webkit-mask-image:radial-gradient(ellipse_92%_86%_at_50%_40%,#000_35%,transparent_92%)] ${className}`}
     >
-      {/* drifting champagne aurora behind the headline */}
+      {/* drifting violet aurora behind the headline */}
       <span
-        className="aurora left-1/2 top-[-14rem] h-[30rem] w-[46rem] -translate-x-1/2 bg-[radial-gradient(ellipse_at_center,rgba(203,170,107,0.30),transparent_66%)]"
+        className="aurora left-1/2 top-[-14rem] h-[30rem] w-[46rem] -translate-x-1/2 bg-[radial-gradient(ellipse_at_center,rgba(139,65,251,0.30),transparent_66%)]"
       />
       <span
-        className="aurora left-[8%] top-[38%] h-[22rem] w-[30rem] bg-[radial-gradient(ellipse_at_center,rgba(203,170,107,0.10),transparent_70%)]"
+        className="aurora left-[8%] top-[38%] h-[22rem] w-[30rem] bg-[radial-gradient(ellipse_at_center,rgba(139,65,251,0.11),transparent_70%)]"
         style={{ animationDelay: "-13s", animationDuration: "34s" }}
       />
 

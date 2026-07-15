@@ -36,8 +36,8 @@ type StarStyle = CSSProperties & {
 export default function ShootingStars({
   minDelay = 3600,
   maxDelay = 7600,
-  starColor = "#f3e2b9",
-  trailColor = "#cbaa6b",
+  starColor = "#e8dcff",
+  trailColor = "#8b41fb",
   className = "",
 }: ShootingStarsProps) {
   const layerRef = useRef<HTMLDivElement>(null);

@@ -21,18 +21,17 @@ const config: Config = {
         muted: "#8B8B91", // secondary text
         line: "rgb(243 242 238 / 0.10)", // hairlines on dark
 
-        // Bronze accent. `sky` is a legacy alias kept for stability;
-        // `brass` is the semantic name for new code — both render champagne bronze.
+        // Violet brand accent. Legacy aliases remain to avoid noisy component churn.
         sky: {
           DEFAULT: "rgb(var(--sky-rgb) / <alpha-value>)",
           bright: "rgb(var(--sky-bright-rgb) / <alpha-value>)",
-          wash: "#241E12",
+          wash: "#211436",
         },
         brass: {
           DEFAULT: "rgb(var(--sky-rgb) / <alpha-value>)",
           bright: "rgb(var(--sky-bright-rgb) / <alpha-value>)",
-          wash: "#241E12",
-          deep: "#8A6A3B",
+          wash: "#211436",
+          deep: "#6D28D9",
         },
 
         // Light porcelain surfaces (a few sections + emphasis cards).
@@ -51,9 +50,9 @@ const config: Config = {
         ivory: "#F4F3EE",
         silver: "#C9C8C0",
         slate: { DEFAULT: "#8B8A82" },
-        accent: { DEFAULT: "rgb(var(--sky-rgb) / <alpha-value>)", glow: "#7CBBDF" },
-        iris: { DEFAULT: "#1F1F1D", glow: "#7CBBDF" },
-        gold: { DEFAULT: "#C7A252", glow: "#C7A252" },
+        accent: { DEFAULT: "rgb(var(--sky-rgb) / <alpha-value>)", glow: "#C4A1FF" },
+        iris: { DEFAULT: "#1F1F1D", glow: "#C4A1FF" },
+        gold: { DEFAULT: "#8B41FB", glow: "#C4A1FF" },
       },
       fontFamily: {
         display: ["var(--font-fraunces)", "Georgia", "serif"],
