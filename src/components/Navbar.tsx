@@ -82,7 +82,7 @@ export default function Navbar() {
       <header
         className={`fixed left-4 right-4 top-3 z-50 mx-auto flex max-w-6xl items-center justify-between gap-6 rounded-full border py-2 pl-5 pr-2 backdrop-blur-xl transition-[background-color,border-color,box-shadow] duration-300 ease-out sm:left-6 sm:right-6 sm:top-4 sm:pl-6 sm:pr-2.5 ${
           scrolled
-            ? "border-white/10 bg-paper-deep/92 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.8)]"
+            ? "border-white/10 bg-paper-deep/95 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.8)]"
             : "border-white/[0.06] bg-paper-deep/75 shadow-[0_16px_44px_-28px_rgba(0,0,0,0.6)]"
         }`}
       >
