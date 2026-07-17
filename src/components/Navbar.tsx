@@ -147,7 +147,7 @@ export default function Navbar() {
 
       {/* Mobile menu — own fixed element so its glass blur works. */}
       {open && (
-        <div className="fixed left-4 right-4 top-[4.5rem] z-50 mx-auto max-w-6xl rounded-3xl border border-white/10 bg-paper-deep/97 p-3 shadow-[0_30px_70px_-30px_rgba(0,0,0,0.85)] backdrop-blur-2xl md:hidden">
+        <div className="fixed left-4 right-4 top-[4.5rem] z-50 mx-auto max-w-6xl rounded-3xl border border-white/10 bg-paper-deep/95 p-3 shadow-[0_30px_70px_-30px_rgba(0,0,0,0.85)] backdrop-blur-2xl md:hidden">
           <div className="flex flex-col gap-1">
             {nav.map((item) => (
               <a
