@@ -3,6 +3,7 @@ pipeline {
 
     options {
         disableConcurrentBuilds()
+        skipDefaultCheckout(true)
         timestamps()
     }
 
@@ -12,17 +13,14 @@ pipeline {
     }
 
     stages {
-        stage('Install and test') {
+        stage('Checkout') {
             steps {
-                sh '''
-                    set -eu
-                    npm ci
-                    npm run lint
-                '''
+                deleteDir()
+                checkout scm
             }
         }
 
-        stage('Build image') {
+        stage('Build and validate with Docker') {
             steps {
                 withCredentials([file(credentialsId: 'website_secrets', variable: 'ENV_FILE')]) {
                     sh '''
