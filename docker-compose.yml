@@ -1,0 +1,31 @@
+services:
+  website:
+    image: ${IMAGE_NAME:-avenor-website:local}
+    build:
+      context: .
+      dockerfile: Dockerfile
+      secrets:
+        - env_file
+    restart: unless-stopped
+    env_file:
+      - ${ENV_FILE:-.env.local}
+    ports:
+      - "${PORT:-3000}:3000"
+    healthcheck:
+      test:
+        - CMD
+        - wget
+        - --quiet
+        - --tries=1
+        - --spider
+        - http://127.0.0.1:3000/
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+    security_opt:
+      - no-new-privileges:true
+
+secrets:
+  env_file:
+    file: ${ENV_FILE:-.env.local}
