@@ -4,6 +4,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        # Requires the deps image to exist first: `docker build -f
+        # Dockerfile.deps -t avenor-website-deps:latest .` or `./build.sh`.
+        DEPS_IMAGE: ${DEPS_IMAGE:-avenor-website-deps:latest}
       secrets:
         - env_file
     restart: unless-stopped

@@ -1,0 +1,28 @@
+# syntax=docker/dockerfile:1.7
+
+# ---------------------------------------------------------
+# Dependencies image
+# ---------------------------------------------------------
+# Split out of the main Dockerfile so node_modules is built and cached as its
+# own image. This layer is only rebuilt when package.json / package-lock.json
+# change (Docker's layer cache skips npm ci otherwise), and the resulting image
+# is reused as the build base in Dockerfile via the DEPS_IMAGE build arg.
+#
+# Build it with:
+#   docker build -f Dockerfile.deps -t avenor-website-deps:latest .
+
+ARG NODE_VERSION=22
+
+FROM node:${NODE_VERSION}-bookworm-slim
+
+WORKDIR /app
+
+ENV NEXT_TELEMETRY_DISABLED=1
+
+COPY package.json package-lock.json ./
+
+RUN --mount=type=cache,id=avernek-npm-cache,target=/root/.npm,sharing=locked \
+    npm ci \
+    --no-audit \
+    --no-fund \
+    --prefer-offline

@@ -1,38 +1,30 @@
 # syntax=docker/dockerfile:1.7
 
+# ---------------------------------------------------------
+# Application image
+# ---------------------------------------------------------
+# Consumes the prebuilt dependencies image (see Dockerfile.deps) as its build
+# base, then produces a minimal standalone Next.js runtime. Because the build
+# stage starts FROM the deps image, that image must be built first:
+#
+#   docker build -f Dockerfile.deps -t avenor-website-deps:latest .
+#   docker build -f Dockerfile --build-arg DEPS_IMAGE=avenor-website-deps:latest -t avenor-website:local .
+#
+# ./build.sh (and the Jenkinsfile) run both steps for you.
+
 ARG NODE_VERSION=22
-
-# ---------------------------------------------------------
-# Shared base
-# ---------------------------------------------------------
-FROM node:${NODE_VERSION}-bookworm-slim AS base
-
-WORKDIR /app
-
-ENV NEXT_TELEMETRY_DISABLED=1
-
-
-# ---------------------------------------------------------
-# Install dependencies
-# Only reruns when package.json or package-lock.json changes
-# ---------------------------------------------------------
-FROM base AS dependencies
-
-COPY package.json package-lock.json ./
-
-RUN --mount=type=cache,id=avernek-npm-cache,target=/root/.npm,sharing=locked \
-    npm ci \
-    --no-audit \
-    --no-fund \
-    --prefer-offline
+ARG DEPS_IMAGE=avenor-website-deps:latest
 
 
 # ---------------------------------------------------------
 # Build application
+# node_modules is already present from the deps image.
 # ---------------------------------------------------------
-FROM base AS builder
+FROM ${DEPS_IMAGE} AS builder
 
-COPY --from=dependencies /app/node_modules ./node_modules
+WORKDIR /app
+
+ENV NEXT_TELEMETRY_DISABLED=1
 
 # .dockerignore prevents node_modules, .next, .git and env files
 # from being copied into this layer.

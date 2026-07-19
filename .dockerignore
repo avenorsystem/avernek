@@ -10,5 +10,6 @@ output
 Dockerfile*
 docker-compose*.yml
 Jenkinsfile
+build.sh
 README.md
 tsconfig.tsbuildinfo
