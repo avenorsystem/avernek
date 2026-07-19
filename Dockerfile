@@ -23,15 +23,23 @@ ARG DEPS_IMAGE=avenor-website-deps:latest
 FROM ${DEPS_IMAGE} AS builder
 
 WORKDIR /app
+COPY package.json package-lock.json ./
+# Cache mount persists npm's package cache across builds on the same Docker
+# host, so repeat builds skip re-downloading packages from the registry.
+RUN --mount=type=cache,target=/root/.npm \
+    npm ci --no-audit --no-fund --prefer-offline
 
 ENV NEXT_TELEMETRY_DISABLED=1
 
 # .dockerignore prevents node_modules, .next, .git and env files
 # from being copied into this layer.
 COPY . .
-
+# The Jenkins secret file is mounted for this command only. Next.js can read
+# build-time NEXT_PUBLIC_* values, while the file never enters an image layer.
+# The .next/cache mount persists Next.js's incremental compiler cache across
+# builds, which is the main lever for fast rebuilds.
 RUN --mount=type=secret,id=env_file,target=/app/.env.local,required=false \
-    --mount=type=cache,id=avernek-next-cache,target=/app/.next/cache,sharing=locked \
+    --mount=type=cache,target=/app/.next/cache \
     npm run build
 
 
