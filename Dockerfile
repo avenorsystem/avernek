@@ -1,40 +1,77 @@
 # syntax=docker/dockerfile:1.7
 
-FROM node:22-alpine AS dependencies
-WORKDIR /app
-COPY package.json package-lock.json ./
-# Cache mount persists npm's package cache across builds on the same Docker
-# host, so repeat builds skip re-downloading packages from the registry.
-RUN --mount=type=cache,target=/root/.npm \
-    npm ci --no-audit --no-fund --prefer-offline
+ARG NODE_VERSION=22
 
-FROM node:22-alpine AS builder
+# ---------------------------------------------------------
+# Shared base
+# ---------------------------------------------------------
+FROM node:${NODE_VERSION}-bookworm-slim AS base
+
 WORKDIR /app
+
 ENV NEXT_TELEMETRY_DISABLED=1
+
+
+# ---------------------------------------------------------
+# Install dependencies
+# Only reruns when package.json or package-lock.json changes
+# ---------------------------------------------------------
+FROM base AS dependencies
+
+COPY package.json package-lock.json ./
+
+RUN --mount=type=cache,id=avernek-npm-cache,target=/root/.npm,sharing=locked \
+    npm ci \
+    --no-audit \
+    --no-fund \
+    --prefer-offline
+
+
+# ---------------------------------------------------------
+# Build application
+# ---------------------------------------------------------
+FROM base AS builder
+
 COPY --from=dependencies /app/node_modules ./node_modules
+
+# .dockerignore prevents node_modules, .next, .git and env files
+# from being copied into this layer.
 COPY . .
-# The Jenkins secret file is mounted for this command only. Next.js can read
-# build-time NEXT_PUBLIC_* values, while the file never enters an image layer.
-# The .next/cache mount persists Next.js's incremental compiler cache across
-# builds, which is the main lever for fast rebuilds.
+
 RUN --mount=type=secret,id=env_file,target=/app/.env.local,required=false \
-    --mount=type=cache,target=/app/.next/cache \
+    --mount=type=cache,id=avernek-next-cache,target=/app/.next/cache,sharing=locked \
     npm run build
 
-FROM node:22-alpine AS runner
+
+# ---------------------------------------------------------
+# Minimal production runtime
+# ---------------------------------------------------------
+FROM node:${NODE_VERSION}-bookworm-slim AS runner
+
 WORKDIR /app
+
 ENV NODE_ENV=production \
     NEXT_TELEMETRY_DISABLED=1 \
     HOSTNAME=0.0.0.0 \
     PORT=3000
 
-RUN addgroup --system --gid 1001 nodejs \
-    && adduser --system --uid 1001 --ingroup nodejs nextjs
+RUN groupadd --system --gid 1001 nodejs \
+    && useradd --system --uid 1001 --gid nodejs nextjs
 
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+COPY --from=builder --chown=nextjs:nodejs \
+    /app/.next/standalone ./
+
+COPY --from=builder --chown=nextjs:nodejs \
+    /app/.next/static ./.next/static
+
+# Needed for ISR cache and runtime image optimization
+RUN mkdir -p .next/cache \
+    && chown -R nextjs:nodejs .next
 
 USER nextjs
+
 EXPOSE 3000
+
 CMD ["node", "server.js"]
