@@ -13,3 +13,4 @@ Jenkinsfile
 build.sh
 README.md
 tsconfig.tsbuildinfo
+.claude

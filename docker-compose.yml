@@ -1,32 +1,36 @@
 services:
   website:
     image: ${IMAGE_NAME:-avenor-website:local}
+
     build:
       context: .
       dockerfile: Dockerfile
+
       args:
-        # Requires the deps image to exist first: `docker build -f
-        # Dockerfile.deps -t avenor-website-deps:latest .` or `./build.sh`.
-        DEPS_IMAGE: ${DEPS_IMAGE:-avenor-website-deps:latest}
+        NODE_VERSION: ${NODE_VERSION:-22}
+
       secrets:
         - env_file
+
     restart: unless-stopped
+
     env_file:
       - ${ENV_FILE:-.env.local}
+
     ports:
       - "${PORT:-3000}:3000"
+
     healthcheck:
       test:
         - CMD
-        - wget
-        - --quiet
-        - --tries=1
-        - --spider
-        - http://127.0.0.1:3000/
+        - node
+        - -e
+        - "fetch('http://127.0.0.1:3000/').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"
       interval: 30s
       timeout: 5s
       retries: 3
       start_period: 20s
+
     security_opt:
       - no-new-privileges:true
 
