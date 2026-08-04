@@ -133,7 +133,7 @@ export default function Navbar() {
     laptop: "calc(100% - 32px)",
     // Cap the floating bar around its actual content instead of tying it to
     // the viewport, which leaves excessive empty space on wide displays.
-    desktop: "min(calc(100% - 32px), 64rem)",
+    desktop: "min(calc(100% - 32px), 70rem)",
   }[viewportTier];
   const mobileMenuWidth = scrolled
     ? scrolledWidth
